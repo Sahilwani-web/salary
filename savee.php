@@ -14,8 +14,8 @@ if(count($_POST)>0){
             $employee_row = mysqli_fetch_assoc($employee_result);
             $employee_id = $employee_row['id'];
 
-            $sql = "INSERT INTO `employeedetails` (`employee_id`, `emp_basic_salary`, `provident_fund`, `security_deposit`) 
-                    VALUES ('$employee_id', '$emp_basic_salary', '$provident_fund', '$security_deposit')";
+            $sql = "INSERT INTO `employeedetails` (`id`, `emp_basic_salary`, `provident_fund`, `security_deposit`) 
+                    VALUES ('$id', '$emp_basic_salary', '$provident_fund', '$security_deposit')";
             
             if (mysqli_query($conn, $sql)) {
                 echo json_encode(array("statusCode"=>200));

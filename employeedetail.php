@@ -54,7 +54,7 @@ include 'C:\xamppp\htdocs\salary\TopNavbar\TopNavbar.php';
                     <?php
                     $result = mysqli_query($conn, "SELECT employeedetails.*, employee.employeecode 
                                               FROM employeedetails AS employeedetails
-                                              JOIN employee AS employee ON employeedetails.employee_id = employee.id");
+                                              JOIN employee AS employee ON employeedetails.id = employee.id");
                     $i = 1;
                     while ($row = mysqli_fetch_array($result)) {
 
