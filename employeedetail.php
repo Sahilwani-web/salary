@@ -91,9 +91,7 @@ include 'C:\xamppp\htdocs\salary\TopNavbar\TopNavbar.php';
     $result = mysqli_query($conn, $query);
     $employeedetails = mysqli_fetch_all($result,MYSQLI_ASSOC);
    
-// var_dump($employeedetails); die();
-    // $result = $mysqli -> query($sql);
-    // 
+
     
 
     ?>
