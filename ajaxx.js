@@ -3,7 +3,7 @@ $(document).on('click','#btn-add',function(e) {
     $.ajax({
         data: data,
         type: "post",
-        url: "savee.php",
+        url: "employeedetail.php",
         success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
                 if(dataResult.statusCode==200){

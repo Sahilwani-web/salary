@@ -1,30 +1,27 @@
 <?php
 include 'db.php';
 if(count($_POST)>0){
-    if($_POST['type']==1){
+    if($_POST['type']==10){
         $emp_basic_salary=$_POST['emp_basic_salary'];
         $provident_fund=$_POST['provident_fund'];
-        $security_deposit=$_POST['security_deposit'];
-        $employeecode=$_POST['employeecode'];
+        $securityDeposit=$_POST['security_deposit'];
+        $employeeCode=$_POST['employeeSelect'];
 
-        $employee_query = "SELECT id FROM employee WHERE employeecode = '$employeecode'";
-        $employee_result = mysqli_query($conn, $employee_query);
+        // $employee_query = "SELECT id FROM employee WHERE employeecode = '$employeecode'";
+        // $employee_result = mysqli_query($conn, $employee_query);
 
-        if(mysqli_num_rows($employee_result) > 0) {
-            $employee_row = mysqli_fetch_assoc($employee_result);
-            $employee_id = $employee_row['id'];
 
-            $sql = "INSERT INTO `employeedetails` (`id`, `emp_basic_salary`, `provident_fund`, `security_deposit`) 
-                    VALUES ('$id', '$emp_basic_salary', '$provident_fund', '$security_deposit')";
-            
-            if (mysqli_query($conn, $sql)) {
-                echo json_encode(array("statusCode"=>200));
-            } else {
-                echo json_encode(array("statusCode"=>201, "error"=>mysqli_error($conn)));
-            }
-        } else {
-            echo json_encode(array("statusCode"=>201, "error"=>"Employee code not found"));
-        }
+		$sql = "INSERT INTO `employeedetails` (`emp_basic_salary`, `provident_fund`, `security_deposit`,`employee_code`) 
+		VALUES ($emp_basic_salary, $provident_fund, $securityDeposit, $employeeCode)";
+	    
+		if (mysqli_query($conn, $sql)) {
+			// echo json_encode(array("statusCode"=>200));
+			// header("location:C:\xamppp\htdocs\salary\employeelist.php");
+			header("location: /salary/employeedetail");
+		} 
+		else {
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
 
         mysqli_close($conn);
     }

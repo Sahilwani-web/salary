@@ -2,7 +2,7 @@
 
 session_start();
 // if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !=true){ 
-//     header("\salary\login.php"); 
+//     require './login.php';
 //     exit; 
 // } 
 

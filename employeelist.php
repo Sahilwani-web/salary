@@ -62,10 +62,7 @@ include '../salary/SideNavbar/SideNavbar.php';
 				?>
 				<tr id="<?php echo $row["id"]; ?>">
 				<td>
-
-				
-							
-						</td>
+		</td>
 					<td><?php echo $i; ?></td>
 					<td>YI-<?= $row["employeecode"]; ?></td>
 					<td><?php echo $row["firstname"]; ?></td>
@@ -103,7 +100,7 @@ include '../salary/SideNavbar/SideNavbar.php';
 	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="width: 600px;">
 				<form id="user_form">
 				<?php
 					$query = "select max(employeecode)+1 as employeecode from employee order by id desc limit 1";

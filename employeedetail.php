@@ -52,12 +52,10 @@ include 'C:\xamppp\htdocs\salary\TopNavbar\TopNavbar.php';
                 <tbody>
 
                     <?php
-                    $result = mysqli_query($conn, "SELECT employeedetails.*, employee.employeecode 
-                                              FROM employeedetails AS employeedetails
-                                              JOIN employee AS employee ON employeedetails.id = employee.id");
+                    $result = mysqli_query($conn, "SELECT employeedetails.*, employee.employeecode FROM employeedetails JOIN employee ON employeedetails.employee_code = employee.id");
+                
                     $i = 1;
                     while ($row = mysqli_fetch_array($result)) {
-
 
                     ?>
                         <tr id="<?php echo $row["id"]; ?>">
@@ -101,11 +99,11 @@ include 'C:\xamppp\htdocs\salary\TopNavbar\TopNavbar.php';
     <div id="addEmployeeModal" class="modal fade">
 
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="user_form" >
+        <div class="modal-dialog ">
+            <div class="modal-content" style="width: 600px; ">
+                <form id="user_form" method="post" action="savee.php">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Employee details</h4>
+                        <h4 class="modal-title" style = "width: 500px;">Add Employee details</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
@@ -120,26 +118,31 @@ include 'C:\xamppp\htdocs\salary\TopNavbar\TopNavbar.php';
                         </div>
                         <div class="form-group">
                             <label>Employee Basic Salary</label>
-                            <input type="city" id="emp_basic_salary" name="emp_basic_salary" class="form-control" required>
+                            <input type="number" id="emp_basic_salary" name="emp_basic_salary" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label> Provident fund</label>
-                            <input type="city" id="provident_fund" name ="provident_fund" class="form-control" required>
+                            <input type="number" id="provident_fund" name ="provident_fund" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label> Security deposit</label>
-                            <input type="city" id="security_deposit" name="security_deposit" class="form-control" required>
+                            <input type="number" id="security_deposit" name="security_deposit" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" value="1" name="type">
+                        <input type="hidden" value="10" name="type">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button type="button" class="btn btn-success" id="btn-add">Add</button>
+                        <input type="submit" class="btn btn-success" id="btn-add" value="Add">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    
+
+
+
+
     <!-- Edit Modal HTML -->
     <div id="editEmployeeModal" class="modal fade">
         <div class="modal-dialog">
@@ -152,18 +155,29 @@ include 'C:\xamppp\htdocs\salary\TopNavbar\TopNavbar.php';
                     <div class="modal-body">
                         <input type="hidden" id="id_u" name="id" class="form-control" required>
                         <div class="form-group">
+                            <label>Employee code</label>
+                            <select name="employeeSelect" class="form-control" required>
+                                <?php foreach ($employeedetails as $employee) : ?>
+                                    <option class="form-control" value="<?php echo $employee['id']; ?>"><?= $employee['firstname'].'-'.$employee['employeecode']; ?>
+                                 </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Employee Basic Salary</label>
-                            <input type="city" id="emp_basic_salary1" name="emp_basic_salary" class="form-control" required>
+                            <input type="number" id="emp_basic_salary1" name="emp_basic_salary" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label> Provident fund</label>
-                            <input type="city" id="provident_fund1" name="provident_fund" class="form-control" required>
+                            <input type="number" id="provident_fund1" name="provident_fund" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label> Security deposit</label>
-                            <input type="city" id="security_deposit1" name="security_deposit" class="form-control" required>
+                            <input type="number" id="security_deposit1" name="security_deposit" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" value="2" name="type">
-                        <input type="button"
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" id="btn-add" value="Add">
+                    </div>
